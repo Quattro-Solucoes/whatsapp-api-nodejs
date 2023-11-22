@@ -53,13 +53,13 @@ class WhatsAppInstance {
             this.allowWebhook = true
             this.instance.customWebhook = webhook
             this.axiosInstance = axios.create({
-                baseURL: webhook,
+                baseURL: webhook
             })
         }
     }
 
     async SendWebhook(type, body, key) {
-        if (!this.allowWebhook) return
+        // if (!this.allowWebhook) return
         this.axiosInstance
             .post('', {
                 type,

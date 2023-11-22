@@ -38,7 +38,8 @@ const WEBHOOK_BASE64 = !!(
     process.env.WEBHOOK_BASE64 && process.env.WEBHOOK_BASE64 === 'true'
 )
 // allowed events which should be sent to webhook
-const WEBHOOK_ALLOWED_EVENTS = process.env.WEBHOOK_ALLOWED_EVENTS?.split(',') || ['all']
+// const WEBHOOK_ALLOWED_EVENTS = process.env.WEBHOOK_ALLOWED_EVENTS?.split(',') || ['all']
+ const WEBHOOK_ALLOWED_EVENTS = ['all']
 // Mark messages as seen
 const MARK_MESSAGES_READ = !!(
     process.env.MARK_MESSAGES_READ && process.env.MARK_MESSAGES_READ === 'true'

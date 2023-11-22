@@ -1,3 +1,5 @@
+const https = require('https')
+const fs = require('fs')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const logger = require('pino')()
@@ -9,6 +11,11 @@ const config = require('./config/config')
 const { Session } = require('./api/class/session')
 const connectToCluster = require('./api/helper/connectMongoClient')
 
+const options = {
+    key: fs.readFileSync(__dirname + '/ssl/key_.key'),
+    cert: fs.readFileSync(__dirname + '/ssl/cert_.crt'),
+};
+
 let server
 
 if (config.mongoose.enabled) {
@@ -18,7 +25,7 @@ if (config.mongoose.enabled) {
     })
 }
 
-server = app.listen(config.port, async () => {
+server = https.createServer(options, app).listen(config.port, async () => {
     logger.info(`Listening on port ${config.port}`)
     global.mongoClient = await connectToCluster(config.mongoose.url)
     if (config.restoreSessionsOnStartup) {

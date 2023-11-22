@@ -51,7 +51,7 @@ const BufferJSON = {
             return typeof val === 'string'
                 ? Buffer.from(val, 'base64')
                 : Buffer.from(val || [])
-        } else if ((k === 'seed' || k === 'public' || k === 'private') && typeof value === 'string') {
+        } else if ((k === 'seed' || k === 'public' || k === 'private') && typeof value === 'string') {         
                 return Buffer.from(value, 'base64');
         }
 
